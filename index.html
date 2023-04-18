@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <body id="root"></body>
-  <script
-    crossorigin
-    src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"
-  ></script>
-  <script
-    crossorigin
-    src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"
-  ></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel">
-    const root = document.getElementById("root");
+	<body id="root"></body>
+	<script
+		crossorigin
+		src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"
+	></script>
+	<script
+		crossorigin
+		src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"
+	></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script type="text/babel">
+		const root = ReactDOM.createRoot(document.getElementById("root"));
 
-    function App() {
-      const [counter, setCounter] = React.useState(0);
-      const onClick = () => {
-        setCounter(counter + 1);
-      };
-      return (
-        <div>
-          <h3>Total Clicks : {counter}</h3>
-          <button>Click Me</button>
-        </div>
-      );
-    }
-    ReactDOM.render(<App />, root);
-  </script>
+		function App() {
+			const [counter, setCounter] = React.useState(0);
+			const onClick = () => {
+				<!-- setCounter(counter + 1); -->
+				setCounter((current) => current + 1);
+				//current가 확실히 현재 값이라는 걸 보장해주기 때문에 위의 방식이 더 안전하다.
+				//현재 상태를 바탕으로 다음 상태를 결정해주고 싶다면 함수를 쓰자!
+			};
+			return (
+				<div>
+					<h3>Total Clicks : {counter}</h3>
+					<button>Click Me</button>
+				</div>
+			);
+		}
+		root.render(<App />, root);
+	</script>
 </html>
