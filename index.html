@@ -14,17 +14,24 @@
 		const root = ReactDOM.createRoot(document.getElementById("root"));
 
 		function App() {
-			const [counter, setCounter] = React.useState(0);
-			const onClick = () => {
-				<!-- setCounter(counter + 1); -->
-				setCounter((current) => current + 1);
-				//current가 확실히 현재 값이라는 걸 보장해주기 때문에 위의 방식이 더 안전하다.
-				//현재 상태를 바탕으로 다음 상태를 결정해주고 싶다면 함수를 쓰자!
+			const [minutes, setMinutes] = React.useState();
+			const onChange = (event) => {
+				console.log(event.target.value);
 			};
 			return (
 				<div>
-					<h3>Total Clicks : {counter}</h3>
-					<button>Click Me</button>
+					<h1 className="hi">Super Converter</h1>
+					<label htmlFor="minutes">Minutes</label>
+					<input
+						value={minutes}
+						id="minutes"
+						placeholder="Minutes"
+						type="number"
+						onChange={onChange}
+					/>
+					<h4>You want to convert {minutes}</h4>
+					<label htmlFor="hours">Hours</label>
+					<input id="hours" placeholder="Hours" type="number" />
 				</div>
 			);
 		}
